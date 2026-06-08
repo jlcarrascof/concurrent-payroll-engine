@@ -7,6 +7,8 @@ defmodule RemotePayWeb.Router do
 
   scope "/api", RemotePayWeb do
     pipe_through :api
+
+    resources "/employees", EmployeeController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
