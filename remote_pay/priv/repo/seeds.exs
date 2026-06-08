@@ -13,7 +13,6 @@
 alias RemotePay.Repo
 alias RemotePay.Employees.Employee
 
-# Insertamos 3 empleados de prueba de distintos países (para nuestro payroll del Día 3)
 Repo.insert!(%Employee{
   name: "Juan Perez",
   email: "juan@example.com",
