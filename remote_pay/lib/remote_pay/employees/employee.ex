@@ -17,5 +17,10 @@ defmodule RemotePay.Employees.Employee do
     employee
     |> cast(attrs, [:name, :email, :country, :salary, :currency])
     |> validate_required([:name, :email, :country, :salary, :currency])
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have a valid email format")
+    |> validate_number(:salary, greater_than: Decimal.new("0.0"))
+    |> validate_inclusion(:currency, ["USD", "EUR", "ARS", "COP", "MXN"], message: "is not an allowed currency")
+    |> unique_constraint(:email)
   end
 end
+
