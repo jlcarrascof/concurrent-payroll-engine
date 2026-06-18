@@ -6,12 +6,12 @@ defmodule RemotePay.Employees.Employee do
   @statuses ["active", "inactive"]
 
   schema "employees" do
-    field :name, :string
-    field :email, :string
-    field :country, :string
-    field :salary, :decimal
-    field :currency, :string, default: "USD"
-    field :status, :string, default: "active"
+    field(:name, :string)
+    field(:email, :string)
+    field(:country, :string)
+    field(:salary, :decimal)
+    field(:currency, :string, default: "USD")
+    field(:status, :string, default: "active")
 
     timestamps(type: :utc_datetime)
   end
@@ -28,4 +28,3 @@ defmodule RemotePay.Employees.Employee do
     |> unique_constraint(:email)
   end
 end
-
