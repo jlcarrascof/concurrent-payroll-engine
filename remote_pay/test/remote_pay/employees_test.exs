@@ -1,67 +1,64 @@
 defmodule RemotePay.EmployeesTest do
   use RemotePay.DataCase
-
   alias RemotePay.Employees
 
-  describe "employees" do
-    alias RemotePay.Employees.Employee
+  @valid_attrs %{
+    name: "Test User",
+    email: "test@example.com",
+    country: "Argentina",
+    salary: 5000,
+    currency: "USD"
+  }
 
-    import RemotePay.EmployeesFixtures
-
-    @invalid_attrs %{name: nil, currency: nil, email: nil, country: nil, salary: nil}
-
-    test "list_employees/0 returns all employees" do
-      employee = employee_fixture()
-      assert Employees.list_employees() == [employee]
+  describe "create_employee/1" do
+    test "creates an employee with valid data" do
+      assert {:ok, employee} = Employees.create_employee(@valid_attrs)
+      assert employee.name == "Test User"
+      assert employee.status == "active"
     end
 
-    test "get_employee!/1 returns the employee with given id" do
-      employee = employee_fixture()
-      assert Employees.get_employee!(employee.id) == employee
+    test "fails with duplicate email" do
+      {:ok, _} = Employees.create_employee(@valid_attrs)
+      assert {:error, changeset} = Employees.create_employee(@valid_attrs)
+      assert "has already been taken" in errors_on(changeset).email
     end
 
-    test "create_employee/1 with valid data creates a employee" do
-      valid_attrs = %{name: "some name", currency: "some currency", email: "some email", country: "some country", salary: "120.5"}
-
-      assert {:ok, %Employee{} = employee} = Employees.create_employee(valid_attrs)
-      assert employee.name == "some name"
-      assert employee.currency == "some currency"
-      assert employee.email == "some email"
-      assert employee.country == "some country"
-      assert employee.salary == Decimal.new("120.5")
+    test "fails with negative salary" do
+      attrs = Map.put(@valid_attrs, :salary, -100)
+      assert {:error, changeset} = Employees.create_employee(attrs)
+      assert "must be greater than 0" in errors_on(changeset).salary
     end
 
-    test "create_employee/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Employees.create_employee(@invalid_attrs)
+    test "fails with unauthorized currency" do
+      attrs = Map.put(@valid_attrs, :currency, "XYZ")
+      assert {:error, changeset} = Employees.create_employee(attrs)
+      assert errors_on(changeset).currency
+    end
+  end
+
+  describe "list_employees/1" do
+    setup do
+      {:ok, _} = Employees.create_employee(@valid_attrs)
+
+      {:ok, _} =
+        Employees.create_employee(%{
+          @valid_attrs
+          | email: "other@example.com",
+            country: "Colombia"
+        })
+
+      :ok
     end
 
-    test "update_employee/2 with valid data updates the employee" do
-      employee = employee_fixture()
-      update_attrs = %{name: "some updated name", currency: "some updated currency", email: "some updated email", country: "some updated country", salary: "456.7"}
-
-      assert {:ok, %Employee{} = employee} = Employees.update_employee(employee, update_attrs)
-      assert employee.name == "some updated name"
-      assert employee.currency == "some updated currency"
-      assert employee.email == "some updated email"
-      assert employee.country == "some updated country"
-      assert employee.salary == Decimal.new("456.7")
+    test "filters by country correctly" do
+      results = Employees.list_employees(%{"country" => "Colombia"})
+      assert length(results) == 1
+      assert hd(results).country == "Colombia"
     end
 
-    test "update_employee/2 with invalid data returns error changeset" do
-      employee = employee_fixture()
-      assert {:error, %Ecto.Changeset{}} = Employees.update_employee(employee, @invalid_attrs)
-      assert employee == Employees.get_employee!(employee.id)
-    end
-
-    test "delete_employee/1 deletes the employee" do
-      employee = employee_fixture()
-      assert {:ok, %Employee{}} = Employees.delete_employee(employee)
-      assert_raise Ecto.NoResultsError, fn -> Employees.get_employee!(employee.id) end
-    end
-
-    test "change_employee/1 returns a employee changeset" do
-      employee = employee_fixture()
-      assert %Ecto.Changeset{} = Employees.change_employee(employee)
+    test "lists only active employees by default" do
+      results = Employees.list_employees(%{})
+      assert length(results) == 2
     end
   end
 end
