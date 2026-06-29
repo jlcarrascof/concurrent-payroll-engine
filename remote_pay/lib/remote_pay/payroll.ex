@@ -43,5 +43,38 @@ defmodule RemotePay.Payroll do
         ran_at: DateTime.utc_now() |> DateTime.truncate(:second)
       })
       |> Repo.insert()
+
+    {:ok,
+     %{
+       run_id: run.id,
+       total_employees: length(results),
+       total_net_payout: total_net,
+       results: results
+     }}
+  end
+
+  def get_run!(id), do: Repo.get!(PayrollRun, id)
+  # Private function called by each concurrent worker
+
+  defp calculate_employee_payroll(employee) do
+    net = CountryRules.calculate_net(employee)
+    tax_rate = CountryRules.tax_rate(employee)
+    tax_amount = Decimal.sub(employee.salary, net)
+
+    %{
+      employee_id: employee.id,
+      name: employee.name,
+      country: employee.country,
+      gross_salary: employee.salary,
+      tax_rate: tax_rate,
+      tax_amount: tax_amount,
+      net_salary: net,
+      currency: employee.currency
+    }
+  end
+
+  # JSON requires string keys instead of atoms
+  defp stringify_keys(map) do
+    Map.new(map, fn {k, v} -> {to_string(k), v} end)
   end
 end
