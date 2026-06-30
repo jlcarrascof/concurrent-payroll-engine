@@ -16,12 +16,6 @@ defmodule RemotePayWeb.PayrollController do
             results: Enum.map(result.results, &serialize_result/1)
           }
         })
-
-      {:error, reason} ->
-        # If something failed, apologize with a 422 error
-        conn
-        |> put_status(:unprocessable_entity)
-        |> json(%{error: inspect(reason)})
     end
   end
 

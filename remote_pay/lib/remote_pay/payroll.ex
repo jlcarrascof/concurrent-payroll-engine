@@ -1,7 +1,6 @@
 defmodule RemotePay.Payroll do
   alias RemotePay.{Repo, Employees}
   alias RemotePay.Payroll.CountryRules
-  import Ecto.Query
 
   defmodule PayrollRun do
     use Ecto.Schema
