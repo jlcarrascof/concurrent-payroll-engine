@@ -20,7 +20,7 @@ defmodule RemotePay.Payroll do
     # 1. Fetch only active employees
     employees = Employees.list_employees(%{"status" => "active"})
 
-    # 2. THE MAGIC: Concurrent processing using Task.async_stream
+    # 2. KEY: Concurrent processing using Task.async_stream
     results =
       employees
       |> Task.async_stream(&calculate_employee_payroll/1, max_concurrency: 10, timeout: 5_000)
@@ -30,7 +30,7 @@ defmodule RemotePay.Payroll do
     total_net =
       Enum.reduce(results, Decimal.new(0), fn r, acc -> Decimal.add(acc, r.net_salary) end)
 
-    # 4. Save the "receipt" in the database
+    # 4. Save the receipt in the database
     {:ok, run} =
       %PayrollRun{}
       |> Ecto.Changeset.change(%{
