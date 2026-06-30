@@ -8,11 +8,15 @@ defmodule RemotePayWeb.Router do
   scope "/api", RemotePayWeb do
     pipe_through(:api)
 
-    # Endpoint especial para servidores (AWS/K8s)
+    # Special endpoint for servers (AWS/K8s)
     get("/health", HealthController, :index)
 
-    # Esto genera automáticamente los 5 endpoints del CRUD:
-    # GET (listar), GET (ver uno), POST (crear), PUT/PATCH (actualizar), DELETE (borrar)
+    # This automatically generates the 5 CRUD endpoints:
+    # GET (list), GET (show one), POST (create), PUT/PATCH (update), DELETE (delete)
     resources("/employees", EmployeeController, except: [:new, :edit])
+
+    post("/payroll/run", PayrollController, :run)
+
+    get("/payroll/:id/status", PayrollController, :status)
   end
 end
