@@ -10,6 +10,11 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+# Prevent running seeds in the test environment
+if Mix.env() == :test do
+  raise "Seeds should not be run in the test environment"
+end
+
 alias RemotePay.Repo
 alias RemotePay.Employees.Employee
 
