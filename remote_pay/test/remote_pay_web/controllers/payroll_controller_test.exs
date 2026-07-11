@@ -15,7 +15,7 @@ defmodule RemotePayWeb.PayrollControllerTest do
     :ok
   end
 
-  test "POST /api/payroll/run ejecuta el motor y retorna resultados", %{conn: conn} do
+  test "POST /api/payroll/run executes the engine and returns results", %{conn: conn} do
     conn = post(conn, ~p"/api/payroll/run")
 
     assert %{"data" => data} = json_response(conn, 200)
@@ -24,7 +24,7 @@ defmodule RemotePayWeb.PayrollControllerTest do
     assert result["country"] == "Argentina"
   end
 
-  test "GET /api/payroll/:id/status retorna el estado de una corrida", %{conn: conn} do
+  test "GET /api/payroll/:id/status returns the payroll run status", %{conn: conn} do
     conn = post(conn, ~p"/api/payroll/run")
     %{"data" => %{"run_id" => run_id}} = json_response(conn, 200)
 

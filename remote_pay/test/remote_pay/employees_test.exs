@@ -35,13 +35,13 @@ defmodule RemotePay.EmployeesTest do
       assert errors_on(changeset).currency
     end
 
-    test "falla sin name (campo requerido)" do
+    test "fails without name (required field)" do
       attrs = Map.delete(@valid_attrs, :name)
       assert {:error, changeset} = Employees.create_employee(attrs)
       assert "can't be blank" in errors_on(changeset).name
     end
 
-    test "falla con formato de email inválido" do
+    test "fails with invalid email format" do
       attrs = Map.put(@valid_attrs, :email, "no-es-un-email")
       assert {:error, changeset} = Employees.create_employee(attrs)
       assert errors_on(changeset).email
@@ -73,7 +73,7 @@ defmodule RemotePay.EmployeesTest do
       assert length(results) == 2
     end
 
-    test "pagina resultados correctamente" do
+    test "paginates results correctly" do
       Enum.each(1..25, fn i ->
         Employees.create_employee(%{
           name: "Emp #{i}",
