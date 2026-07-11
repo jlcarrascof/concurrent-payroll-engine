@@ -34,6 +34,18 @@ defmodule RemotePay.EmployeesTest do
       assert {:error, changeset} = Employees.create_employee(attrs)
       assert errors_on(changeset).currency
     end
+
+    test "falla sin name (campo requerido)" do
+      attrs = Map.delete(@valid_attrs, :name)
+      assert {:error, changeset} = Employees.create_employee(attrs)
+      assert "can't be blank" in errors_on(changeset).name
+    end
+
+    test "falla con formato de email inválido" do
+      attrs = Map.put(@valid_attrs, :email, "no-es-un-email")
+      assert {:error, changeset} = Employees.create_employee(attrs)
+      assert errors_on(changeset).email
+    end
   end
 
   describe "list_employees/1" do
@@ -59,6 +71,25 @@ defmodule RemotePay.EmployeesTest do
     test "lists only active employees by default" do
       results = Employees.list_employees(%{})
       assert length(results) == 2
+    end
+
+    test "pagina resultados correctamente" do
+      Enum.each(1..25, fn i ->
+        Employees.create_employee(%{
+          name: "Emp #{i}",
+          email: "emp#{i}@test.com",
+          country: "Argentina",
+          salary: 1000,
+          currency: "USD"
+        })
+      end)
+
+      page1 = Employees.list_employees(%{"page" => "1", "per_page" => "10"})
+      page2 = Employees.list_employees(%{"page" => "2", "per_page" => "10"})
+
+      assert length(page1) == 10
+      assert length(page2) == 10
+      assert hd(page1).id != hd(page2).id
     end
   end
 end
