@@ -56,8 +56,14 @@ jobs:
         run: mix compile --warnings-as-errors
         working-directory: ./remote_pay
 
-      - name: Setup database
-        run: mix ecto.setup
+      - name: Create database
+        run: mix ecto.create
+        working-directory: ./remote_pay
+        env:
+          MIX_ENV: test
+
+      - name: Run migrations
+        run: mix ecto.migrate
         working-directory: ./remote_pay
         env:
           MIX_ENV: test
