@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: remote-pay-config
+data:
+  MIX_ENV: "prod"
+  PORT: "4000"
+  POOL_SIZE: "10"
+  PHX_HOST: "remote-pay.example.com"
