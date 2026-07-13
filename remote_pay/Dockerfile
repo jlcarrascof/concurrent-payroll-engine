@@ -1,4 +1,4 @@
-FROM hexpm/elixir:1.18.0-erlang-26.2.5-debian-bookworm-20240701 AS builder
+FROM elixir:1.18.0 AS builder
 
 RUN apt-get update -y && apt-get install -y build-essential git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
