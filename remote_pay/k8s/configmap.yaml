@@ -7,3 +7,4 @@ data:
   PORT: "4000"
   POOL_SIZE: "10"
   PHX_HOST: "remote-pay.example.com"
+  PHX_SERVER: "true"
