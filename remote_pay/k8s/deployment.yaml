@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: remote-pay-api
-          image: tu-usuario/remote-pay:latest
+          image: jjmartinezf/remote-pay:latest
           ports:
             - containerPort: 4000
           envFrom:

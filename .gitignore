@@ -1,1 +1,5 @@
 .artifacts/
+
+# K8s binaries downloaded for local testing
+kubectl
+minikube-linux-amd64
