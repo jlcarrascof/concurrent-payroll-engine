@@ -5,7 +5,7 @@ import type {
 } from './types'
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000',
+  baseURL: typeof window !== 'undefined' ? '' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'),
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',

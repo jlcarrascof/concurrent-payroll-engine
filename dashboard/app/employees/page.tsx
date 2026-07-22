@@ -32,7 +32,7 @@ export default function EmployeesPage() {
         <div>
           <h1 className="text-xl font-semibold">Employees</h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-            {data?.total ?? 0} registered employees
+            {data?.meta?.total ?? data?.total ?? data?.data?.length ?? 0} registered employees
           </p>
         </div>
         <Button onClick={handleNew}>+ New Employee</Button>
