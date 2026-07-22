@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'RemotePay Dashboard',
-  description: 'Payroll engine admin panel — Elixir + Phoenix API',
+  description: 'Concurrent payroll engine admin panel — Elixir + Phoenix API',
 }
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>
         <Providers>
           {children}
