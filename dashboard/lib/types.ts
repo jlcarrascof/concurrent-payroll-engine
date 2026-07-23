@@ -12,24 +12,27 @@ export interface Employee {
 
 export interface PayrollResult {
   employee_id: number
-  employee_name: string
+  name?: string
+  employee_name?: string
   country: string
-  gross_salary: number
+  gross_salary: string | number
   tax_rate: number
-  tax_amount: number
-  net_salary: number
+  tax_amount: string | number
+  net_salary: string | number
   currency: string
 }
 
 export interface PayrollRun {
-  id: string
-  status: 'pending' | 'running' | 'completed' | 'failed'
+  run_id?: number | string
+  id?: string
+  status?: 'pending' | 'running' | 'completed' | 'failed'
   total_employees: number
-  total_gross: number
-  total_net: number
+  total_gross?: number | string
+  total_net?: number | string
+  total_net_payout?: number | string
   results: PayrollResult[]
-  started_at: string
-  completed_at: string | null
+  started_at?: string
+  completed_at?: string | null
 }
 
 export interface HealthStatus {

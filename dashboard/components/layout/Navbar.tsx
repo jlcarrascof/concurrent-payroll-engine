@@ -66,7 +66,7 @@ export function Navbar() {
       
       <div className="flex items-center gap-4">
         {/* API Status Badge */}
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-semibold text-xs">
+        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 dark:bg-violet-500/15 border border-violet-500/30 text-violet-700 dark:text-violet-300 font-semibold text-xs">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           API Connected
         </span>
@@ -75,7 +75,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={toggleTheme}
-          className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
+          className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
           title={isDarkMode ? "Switch to Light Mode (☀️)" : "Switch to Dark Mode (🌙)"}
         >
           {isDarkMode ? (
@@ -96,7 +96,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="text-right hidden sm:block">
             <p className="text-xs font-bold text-slate-900 dark:text-white leading-tight">{user?.name || 'Javier Martínez'}</p>
-            <p className="text-[11px] font-medium text-emerald-600 dark:text-emerald-400">{user?.role || 'Admin'}</p>
+            <p className="text-[11px] font-medium text-violet-600 dark:text-violet-400">{user?.role || 'Admin'}</p>
           </div>
           
           <button

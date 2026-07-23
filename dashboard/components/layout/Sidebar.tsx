@@ -24,12 +24,12 @@ export function Sidebar() {
       
       {/* Brand Logo Header */}
       <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-800/80">
-        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-sm shadow-md shadow-emerald-500/20">
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-purple-400 flex items-center justify-center text-white font-black text-sm shadow-md shadow-violet-500/25">
           RP
         </div>
         <div>
-          <p className="text-white font-extrabold text-sm tracking-tight leading-none">Remote<span className="text-emerald-400">Pay</span></p>
-          <p className="text-emerald-400 font-semibold text-[11px] mt-1 tracking-wide">Payroll Engine</p>
+          <p className="text-white font-extrabold text-sm tracking-tight leading-none">Remote<span className="text-violet-400">Pay</span></p>
+          <p className="text-purple-300 font-semibold text-[11px] mt-1 tracking-wide">Payroll Engine</p>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 px-3.5 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
                 isActive
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25'
+                  ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/30'
                   : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
               }`}
             >
@@ -60,7 +60,7 @@ export function Sidebar() {
         <div>
           <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Engine Stack</p>
           <p className="text-slate-200 text-xs font-mono font-semibold mt-0.5">Elixir 1.18 + Phoenix</p>
-          <p className="text-emerald-400 text-xs font-mono font-medium">Minikube + K8s</p>
+          <p className="text-violet-400 text-xs font-mono font-medium">Minikube + K8s</p>
         </div>
 
         <button

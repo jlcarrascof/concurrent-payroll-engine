@@ -66,7 +66,7 @@ export default function LoginPage() {
       <button
         type="button"
         onClick={toggleTheme}
-        className="absolute top-6 right-6 z-50 p-3 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 shadow-md backdrop-blur-md transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
+        className="absolute top-6 right-6 z-50 p-3 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 shadow-md backdrop-blur-md transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
         title={isDarkMode ? "Switch to Light Mode (☀️)" : "Switch to Dark Mode (🌙)"}
       >
         {isDarkMode ? (
@@ -83,21 +83,21 @@ export default function LoginPage() {
       </button>
 
       {/* Decorative Glow Elements */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-500/20 dark:bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-emerald-600/15 dark:bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-violet-600/20 dark:bg-violet-600/25 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/20 dark:bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Container */}
       <div className="w-full max-w-md relative z-10">
         
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-emerald-400 shadow-lg shadow-emerald-500/30 mb-4">
-            <svg className="w-8 h-8 text-white dark:text-slate-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600 to-purple-400 shadow-lg shadow-violet-500/30 mb-4">
+            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-            Remote<span className="text-emerald-600 dark:text-emerald-400">Pay</span>
+            Remote<span className="text-violet-600 dark:text-violet-400">Pay</span>
           </h1>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-1.5 font-medium">
             Concurrent Payroll Engine &amp; Global Admin Portal
@@ -132,7 +132,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-100/90 dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 font-medium"
+                  className="w-full bg-slate-100/90 dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 font-medium"
                   placeholder="admin@remotepay.com"
                 />
               </div>
@@ -154,7 +154,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-slate-100/90 dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 font-medium"
+                  className="w-full bg-slate-100/90 dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600 font-medium"
                   placeholder="••••••••"
                 />
               </div>
@@ -164,7 +164,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 transition-all duration-200 flex items-center justify-center gap-2 group disabled:opacity-50 active:scale-[0.99]"
+              className="w-full bg-violet-600 hover:bg-violet-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-violet-600/30 transition-all duration-200 flex items-center justify-center gap-2 group disabled:opacity-50 active:scale-[0.99]"
             >
               {isLoading ? (
                 <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" fill="none">
@@ -184,18 +184,18 @@ export default function LoginPage() {
 
           {/* Demo Credentials Box */}
           <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80">
-            <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-xl p-3.5">
-              <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-400 font-semibold text-xs mb-1">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="bg-violet-50 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/30 rounded-xl p-3.5">
+              <div className="flex items-center gap-2 text-violet-900 dark:text-violet-300 font-semibold text-xs mb-1">
+                <svg className="w-4 h-4 text-violet-600 dark:text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 SaaS Demo Credentials
               </div>
               <p className="text-slate-700 dark:text-slate-400 text-xs font-medium">
-                Email: <code className="text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-slate-950/80 px-1.5 py-0.5 rounded font-mono border border-emerald-200 dark:border-transparent">admin@remotepay.com</code>
+                Email: <code className="text-violet-900 dark:text-violet-300 bg-violet-100 dark:bg-slate-950/80 px-1.5 py-0.5 rounded font-mono border border-violet-200 dark:border-transparent">admin@remotepay.com</code>
               </p>
               <p className="text-slate-700 dark:text-slate-400 text-xs mt-1 font-medium">
-                Password: <code className="text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-slate-950/80 px-1.5 py-0.5 rounded font-mono border border-emerald-200 dark:border-transparent">admin123</code>
+                Password: <code className="text-violet-900 dark:text-violet-300 bg-violet-100 dark:bg-slate-950/80 px-1.5 py-0.5 rounded font-mono border border-violet-200 dark:border-transparent">admin123</code>
               </p>
             </div>
           </div>
